@@ -70,12 +70,10 @@ var helpers = require('./lib/helpers')
 var paths = [
   // { "path": 'bkg1.png',"d":4,"caption":'4{\\pos(200,200)}{\\fs(32)}\\Nmins old'},
   { 'path': 'assets/image.jpg', 'd': 10, logo: '', 'caption': 'first slide' },
-  { 'path': 'assets/video.mp4', 'd': 5, 'caption': 'no logo,{\\\\fs(32)}\nbut caption :)' }
+  { 'path': 'assets/video.mp4', 'd': 5, 'caption': 'no logo,\\Nbut caption :)' }
   // { "path": 'bkg2.png'}
 ]
 var defaultParams = { d: 5, 'logo': 'assets/logo.png', 'logoPosition': { x: 0, y: 0 } }
-
-const durations = [10, 5]
 
 var subtitleStyle = {
   'Fontname': 'Verdana',
@@ -90,15 +88,14 @@ var subtitleStyle = {
   'Outline': '2',
   'Shadow': '3',
   'Alignment': '1',
-  'MarginL': '40',
-  'MarginR': '60',
-  'MarginV': '40'
+  'MarginL': '0',
+  'MarginR': '0',
+  'MarginV': '0'
 }
 
 const params = {
   paths: paths,
   subtitleStyle: subtitleStyle,
-  durations: durations,
   // transition:{name: 'directionalWipe',duration: 500  },
   transitions: [
     // {
