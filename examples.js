@@ -1,8 +1,8 @@
-var concat = require('ffmpeg-concat')
+var concat = require('./lib')
 var helpers = require('./lib/helpers')
 
 // 3 paths with default duration 5 seconds for the pictures
-//example0.mp4
+// example0.mp4
 // var paths = [
 //   { "path": 'bkg1.png',},
 //   { "path": 'snow2.mp4'},
@@ -69,34 +69,36 @@ var helpers = require('./lib/helpers')
 // fyi trying also different transition here
 var paths = [
   // { "path": 'bkg1.png',"d":4,"caption":'4{\\pos(200,200)}{\\fs(32)}\\Nmins old'},
-  { "path": 'bkg1.png',"d":4,"caption":'first slide'},
-  { "path": 'snow2.mp4',"logo":"","caption":"no logo, but caption :)"},
+  { 'path': 'assets/image.jpg', 'd': 10, logo: '', 'caption': 'first slide' },
+  { 'path': 'assets/video.mp4', 'd': 5, 'caption': 'no logo,{\\\\fs(32)}\nbut caption :)' }
   // { "path": 'bkg2.png'}
-];
-var defaultParams = { d:5 ,"logo":"logo1.png","logoPosition":{ x:1600,y:800 }}
+]
+var defaultParams = { d: 5, 'logo': 'assets/logo.png', 'logoPosition': { x: 0, y: 0 } }
 
+const durations = [10, 5]
 
-var subtitleStyle= {
-  "Fontname": "Verdana",
-  "Fontsize": "26",
-  "PrimaryColour": "11861244",
-  "SecondaryColour": "11861244",
-  "TertiaryColour": "11861244",
-  "BackColour": "-2147483640",
-  "Bold": "2",
-  "Italic": "0",
-  "BorderStyle": "2",
-  "Outline": "2",
-  "Shadow": "3",
-  "Alignment": "1",
-  "MarginL": "40",
-  "MarginR": "60",
-  "MarginV": "40"
-};
+var subtitleStyle = {
+  'Fontname': 'Verdana',
+  'Fontsize': '26',
+  'PrimaryColour': '11861244',
+  'SecondaryColour': '11861244',
+  'TertiaryColour': '11861244',
+  'BackColour': '-2147483640',
+  'Bold': '2',
+  'Italic': '0',
+  'BorderStyle': '2',
+  'Outline': '2',
+  'Shadow': '3',
+  'Alignment': '1',
+  'MarginL': '40',
+  'MarginR': '60',
+  'MarginV': '40'
+}
 
-params =  {
-  paths:paths,
-  subtitleStyle:subtitleStyle,
+const params = {
+  paths: paths,
+  subtitleStyle: subtitleStyle,
+  durations: durations,
   // transition:{name: 'directionalWipe',duration: 500  },
   transitions: [
     // {
@@ -117,10 +119,10 @@ params =  {
       duration: 500
     }
   ],
-  defaultParams:defaultParams,
-  // audio:"song.mp3",
-  output:"output0.mp4"
+  defaultParams: defaultParams,
+  audio: 'assets/song.mp3',
+  output: 'output0.mp4'
 }
 
-helpers.createSubtitles(params);
-helpers.createvideos(params,function(params) {concat(params)} )
+helpers.createSubtitles(params)
+helpers.createvideos(params, function (params) { concat(params) })
